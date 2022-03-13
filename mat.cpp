@@ -32,7 +32,13 @@ std::string ariel::mat(int col, int row, char symbol_1, char symbol_2){
     check_input(col, row, symbol_1, symbol_2);
     std::string ans;
     std::vector < std::vector<char>> mat(row, std::vector<char>(col));
-        int top = 0;
+    fill_mat(&mat, col, row, symbol_1, symbol_2);
+    ans = convert_mat(&mat, col, row);
+    return ans;
+}
+
+void ariel::fill_mat(std::vector<std::vector<char>> *mat, int col, int row, char symbol_1, char symbol_2){
+    int top = 0;
     int down = row-1;
     int left = 0;
     int right = col-1;
@@ -47,31 +53,37 @@ std::string ariel::mat(int col, int row, char symbol_1, char symbol_2){
         }
 
         for(int i = left; i <= right; ++i){
-            mat[top][i] = curr_symbol;
+            (*mat)[top][i] = curr_symbol;
         }
         ++top;
         for(int i = top; i <= down; ++i){
-            mat[i][right] = curr_symbol;
+            (*mat)[i][right] = curr_symbol;
         }
         --right;
         for(int i = right; i >= left; --i){
-            mat[down][i] = curr_symbol;
+            (*mat)[down][i] = curr_symbol;
         }
         --down;
         for(int i = down; i >= top; --i){
-            mat[i][left] = curr_symbol;
+            (*mat)[i][left] = curr_symbol;
         }
         ++left;
         ++flag;
     }
+}
+
+
+std::string ariel::convert_mat(std::vector<std::vector<char>> *mat, int col, int row){
+    std::string ans;
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < col; ++j){
-            ans += mat[i][j];
+            ans += (*mat)[i][j];
         }
         ans += "\n";
     }
     return ans;
 }
+
 
 
 
