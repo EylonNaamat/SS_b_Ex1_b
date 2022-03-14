@@ -5,8 +5,10 @@
 
 
 int main(){
-    int row, col = 0;
-    char symbol_1, symbol_2 = 0;
+    int row = 0;
+    int col = 0;
+    char symbol_1 = 0;
+    char symbol_2 = 0;
     std::string ans;
     int num = 0;
     std::cout << "enter a number of checks" << std::endl;
